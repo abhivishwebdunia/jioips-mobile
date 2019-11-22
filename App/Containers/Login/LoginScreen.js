@@ -34,8 +34,8 @@ class LoginScreen extends Component {
     return (
       <KeyboardAvoidingView style={styles.containerView} behavior="padding">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <LoaderComponent></LoaderComponent>
           <View style={styles.loginScreenContainer}>
+            <LoaderComponent></LoaderComponent>
             <View style={styles.loginFormView}>
               <Text style={styles.logoText}>JIOIPS</Text>
               <TextInput

@@ -1,4 +1,4 @@
-import { loaderConstants } from '../_constants';
+import { loaderConstants } from '../Constants';
 
 export function loader(state = {loading:false}, action) {
   switch (action.type) {

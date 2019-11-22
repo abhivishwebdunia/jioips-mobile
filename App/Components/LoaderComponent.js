@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { css } from '@emotion/core'
@@ -39,19 +40,13 @@ class LoaderComponent extends Component {
         const { children, ...attributes } = this.props;
 
     return (
-      <div>
+      <View>
         {this.props.loader.loading && (
-          <div className="sweet-loading">
-            <ClipLoader
-              css={override}
-              sizeUnit={'px'}
-              size={60}
-              color={'#123abc'}
-              loading={this.props.loader.loading}
-            />
-          </div>
+          <View style={[styles.container, styles.horizontal]}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
         )}
-      </div>
+      </View>
     )
   }
 }
@@ -64,3 +59,14 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(LoaderComponent)
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+})
