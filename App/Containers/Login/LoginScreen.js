@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import styles from './style';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import styles from './style'
 import {
   Keyboard,
   Text,
@@ -9,28 +9,32 @@ import {
   TouchableWithoutFeedback,
   Alert,
   KeyboardAvoidingView,
-} from 'react-native';
-import { AuthActions } from '../../Actions/';
-import { Button } from 'react-native-elements';
-import LoaderComponent from '../../Components/LoaderComponent';
+} from 'react-native'
+import { AuthActions } from '../../Actions'
+import { Button } from 'react-native-elements'
+import LoaderComponent from '../../Components/LoaderComponent'
 
 class LoginScreen extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      user: null,
-      pass: null,
+      username: "",
+      password: "",
     }
   }
 
   doLogin() {
-    let { user, pass } = this.state
-    this.props.login(user, pass)
+    let { username, password } = this.state;
+    this.props.login(username, password)
+  }
+
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   }
 
   render() {
-    let { hasError, isLogged, isLoading } = this.props
     return (
       <KeyboardAvoidingView style={styles.containerView} behavior="padding">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -41,11 +45,17 @@ class LoginScreen extends Component {
               <TextInput
                 placeholder="Username"
                 placeholderColor="#c4c3cb"
+                value={this.state.username}
+                onChange={(e) => this.handleChange(e)}
+                name="username"
                 style={styles.loginFormTextInput}
               />
               <TextInput
                 placeholder="Password"
                 placeholderColor="#c4c3cb"
+                value={this.state.password}
+                onChange={(e) => this.handleChange(e)}
+                name="password"
                 style={styles.loginFormTextInput}
                 secureTextEntry={true}
               />
@@ -53,12 +63,6 @@ class LoginScreen extends Component {
                 buttonStyle={styles.loginButton}
                 onPress={() => this.doLogin()}
                 title="Login"
-              />
-              <Button
-                buttonStyle={styles.fbLoginButton}
-                onPress={() => this.onFbLoginPress()}
-                title="Login with Facebook"
-                color="#3897f1"
               />
             </View>
           </View>

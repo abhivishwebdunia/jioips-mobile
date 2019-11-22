@@ -1,6 +1,6 @@
 import { authConstants } from '../Constants'
 import { httpService, encryptDecrypt, storageService } from '../Services'
-import { alertActions, loading } from '.'
+import { alertActions, loading } from '.';
 import { history } from '../Helpers'
 
 export const AuthActions = {
