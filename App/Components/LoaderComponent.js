@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { css } from '@emotion/core'

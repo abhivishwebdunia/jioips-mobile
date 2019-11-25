@@ -15,7 +15,7 @@ import { AuthActions } from '../../Actions'
 import { Button } from 'react-native-elements'
 import LoaderComponent from '../../Components/LoaderComponent'
 
-class LoginScreen extends ValidationComponent {
+class ForgotPasswordScreen extends ValidationComponent {
   constructor(props) {
     super(props);
     console.log("props",this.props);
@@ -25,7 +25,7 @@ class LoginScreen extends ValidationComponent {
     }
   }
 
-  doLogin = () => {
+  doSubmit = () => {
     let { username, password } = this.state
     this.validate({
       username: { required: true,minlength: 6 },
@@ -52,7 +52,7 @@ class LoginScreen extends ValidationComponent {
             <LoaderComponent></LoaderComponent>
             <View style={styles.loginFormView}>
               <Text style={styles.logoText}>JIOIPS</Text>
-              <Text style={styles.logoText2}>Login</Text>
+              <Text style={styles.logoText2}>Forgot Password</Text>
 
               <TextInput
                 placeholder="Username"
@@ -65,21 +65,11 @@ class LoginScreen extends ValidationComponent {
                 style={styles.loginFormTextInput}
               />
               {this.isFieldInError('username') && <Text>{this.getErrorsInField('username')[0]}</Text>}
-              <TextInput
-                placeholder="Password"
-                keyboardShouldPersistTaps="always"
-                placeholderColor="#c4c3cb"
-                value={this.state.password}
-                onChangeText={(e) => this.handleChange('password',e)}
-                name="password"
-                style={styles.loginFormTextInput}
-                secureTextEntry={true}
-              />
-              {this.isFieldInError('password') && <Text>{this.getErrorsInField('password')[0]}</Text>}
+              
               <Button
                 buttonStyle={styles.loginButton}
-                onPress={() => this.doLogin()}
-                title="Login"
+                onPress={() => this.doSubmit()}
+                title="Submit"
               />
             </View>
           </View>
@@ -99,4 +89,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps)(LoginScreen)
+export default connect(mapStateToProps)(ForgotPasswordScreen)

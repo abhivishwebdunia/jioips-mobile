@@ -1,6 +1,6 @@
 import { authConstants } from '../Constants'
 import { httpService, encryptDecrypt, storageService } from '../Services'
-import { alertActions, loading } from '.';
+import { loading,alertActions } from './LoaderActions';
 import { history } from '../Helpers'
 
 export const AuthActions = {
@@ -10,11 +10,14 @@ export const AuthActions = {
 }
 
 function login(username, password) {
+  console.log('username', username)
   return (dispatch) => {
+    
+    console.log('username', dispatch)
     dispatch(loading(true))
     dispatch(request({ username }))
-    password = encryptDecrypt.CryptoEncrypt(password)
-    httpService.apiPost('/auth/login/', { username: username, password: password }).then(
+    password = encryptDecrypt.sha512Encrypt(password)
+    httpService.apiPost('/login', { username: username, password: password }).then(
       (user) => {
         console.log('user', user)
         if (user.success) {

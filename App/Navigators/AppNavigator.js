@@ -1,6 +1,7 @@
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 import LoginScreen from '../Containers/Login/LoginScreen';
+import ForgotPasswordScreen from '../Containers/ForgotPassword/ForgotPasswordScreen';
 import SplashScreen from 'App/Containers/SplashScreen/SplashScreen';
 
 /**
@@ -14,6 +15,7 @@ const StackNavigator = createStackNavigator(
     // See https://reactnavigation.org/docs/en/stack-navigator.html#routeconfigs
     SplashScreen: SplashScreen,
     LoginScreen: LoginScreen,
+    ForgotPasswordScreen: ForgotPasswordScreen,
     // The main application screen is our "ExampleScreen". Feel free to replace it with your
     // own screen and remove the example.
   },
