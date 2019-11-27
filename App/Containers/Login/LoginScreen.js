@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styles from './style'
 import ValidationComponent from 'react-native-form-validator'
+import Config from "react-native-config";
 import {
   Keyboard,
   Text,
@@ -14,7 +15,8 @@ import {
 import { AuthActions } from '../../Actions'
 import { Button } from 'react-native-elements'
 import LoaderComponent from '../../Components/LoaderComponent'
-
+import { alertActions } from '../../Actions';
+import NavComponent from '../../Components/NavComponent'
 class LoginScreen extends ValidationComponent {
   constructor(props) {
     super(props);
@@ -23,9 +25,17 @@ class LoginScreen extends ValidationComponent {
       username: '',
       password: '',
     }
+    console.log("CONFIG",Config);
+    
+  }
+
+  componentDidMount(){
+
+    console.log("componentDidMount Login");
   }
 
   doLogin = () => {
+    
     let { username, password } = this.state
     this.validate({
       username: { required: true,minlength: 6 },
@@ -46,10 +56,12 @@ class LoginScreen extends ValidationComponent {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.containerView} behavior="padding">
+      
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.loginScreenContainer}>
+          <NavComponent navkey="login"></NavComponent>
             <LoaderComponent></LoaderComponent>
+
             <View style={styles.loginFormView}>
               <Text style={styles.logoText}>JIOIPS</Text>
               <Text style={styles.logoText2}>Login</Text>
@@ -84,7 +96,7 @@ class LoginScreen extends ValidationComponent {
             </View>
           </View>
         </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+      
     )
   }
 }

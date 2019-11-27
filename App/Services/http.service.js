@@ -1,6 +1,7 @@
-import { AsyncStorage } from 'react-native';
-import { history } from '../Helpers';
-import Config from "react-native-config";
+import { AsyncStorage } from 'react-native'
+import { history } from '../Helpers'
+import Config from 'react-native-config';
+import {checkResponse} from '../Helpers/common';
 export const httpService = {
   apiGet,
   apiPost,
@@ -11,14 +12,15 @@ export const httpService = {
 }
 
 function getHeaders() {
-  let headers = { 'Content-Type': 'application/json' }
-  headers['x-api-key'] = Config.REACT_APP_API_KEY
-  let authToken = AsyncStorage.getItem('authToken')
+  let headers = { 'content-type': 'application/json', 'accept': 'application/json', 'customerid': '2' }
 
-  if (authToken) {
-    headers['x-access-token'] = authToken
-  }
-  return headers;
+  // headers['x-api-key'] = Config.REACT_APP_API_KEY
+  // let authToken = AsyncStorage.getItem('authToken')
+
+  // if (authToken) {
+  //   headers['x-access-token'] = authToken
+  // }
+  return headers
 }
 
 function logout() {
@@ -85,20 +87,32 @@ function apiDelete(endPoint) {
 }
 
 function handleResponse(response) {
-  console.log('response', response)
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text)
-    if (!response.ok) {
-      if (response.status === 401) {
-        // auto logout if 401 response returned from api
-        AsyncStorage.clear()
-        history.push('/login')
+  let mainResponse = {httpStatusCode:400,data:{},message:'Some error occured'};
+  try {
+    return response.text().then((text) => {
+      const data = text && JSON.parse(text)
+      
+      if (!response.ok) {
+        if (response.status === 401) {
+          // auto logout if 401 response returned from api
+          AsyncStorage.clear()
+  
+        }
+  
+        const error = (data && data.message) || response.statusText
+        return Promise.reject(error)
+      }else{
+        
       }
+  
+      return Promise.reject(mainResponse)
+    })
 
-      const error = (data && data.message) || response.statusText
-      return Promise.reject(error)
-    }
+    return Promise.resolve(mainResponse)
+  } catch (err) {
 
-    return data
-  })
+    return Promise.reject(mainResponse)
+  }
+
+  
 }

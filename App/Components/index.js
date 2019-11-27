@@ -1,2 +1,2 @@
-export * from './PrivateRoute';
-export * from './LoaderComponent';
+export * from './PrivateRoute'
+export * from './LoaderComponent'

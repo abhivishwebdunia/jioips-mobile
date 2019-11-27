@@ -22,8 +22,8 @@ function getData(key, value) {
 }
 
 function setLogin(loginData) {
-  this.setData('authData', loginData.userDetail)
-  this.setData('authToken', loginData.authToken)
+  this.setData('authData', loginData.Data)
+  this.setData('authToken', loginData.Data.token)
 }
 
 function getLogin() {}

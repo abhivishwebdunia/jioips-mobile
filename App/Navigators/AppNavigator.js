@@ -2,7 +2,7 @@ import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 import LoginScreen from '../Containers/Login/LoginScreen';
 import ForgotPasswordScreen from '../Containers/ForgotPassword/ForgotPasswordScreen';
-import SplashScreen from 'App/Containers/SplashScreen/SplashScreen';
+import SplashScreen from '../Containers/SplashScreen/SplashScreen';
 
 /**
  * The root screen contains the application's navigation.
@@ -21,7 +21,7 @@ const StackNavigator = createStackNavigator(
   },
   {
     // By default the application will show the splash screen
-    initialRouteName: 'SplashScreen',
+    initialRouteName: 'LoginScreen',
     // See https://reactnavigation.org/docs/en/stack-navigator.html#stacknavigatorconfig
     headerMode: 'none',
   }

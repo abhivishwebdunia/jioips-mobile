@@ -30,9 +30,8 @@ export default class App extends Component {
          * @see https://github.com/rt2zz/redux-persist/blob/master/docs/PersistGate.md
          */}
 
-        <ThemeContext.Provider value={getTheme(uiTheme)}>
-          <RootScreen />
-        </ThemeContext.Provider>
+        <RootScreen />
+        
       </Provider>
     )
   }
